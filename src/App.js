@@ -17,7 +17,7 @@ function App() {
     <div className='App'>
       <AppBar text={text} setText={setText}></AppBar>
 
-      <CardList users={users} text={text}></CardList>
+      <CardList users={users} text={text} setUsers={setUsers}></CardList>
     </div>
   )
 }

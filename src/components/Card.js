@@ -5,7 +5,7 @@ const Card = ({ user }) => {
   const color = randomColor()
   return (
     <MuiCard>
-      <Box padding={2}>
+      <Box minHeight={160} padding={2}>
         <Typography
           variant='h5'
           style={{
