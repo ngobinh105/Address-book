@@ -177,6 +177,35 @@ export const CardList = ({ users, text, setUsers }) => {
           >
             Cancel
           </Button>
+
+          {isUpdate ? (
+            <Button
+              color='primary'
+              onClick={async () => {
+                const selectUser = {
+                  name,
+                  address: { street, suite, city, zipcode },
+                  email,
+                  phone,
+                }
+                const res = await fetch(
+                  `https://jsonplaceholder.typicode.com/users/${id}`,
+                  {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(selectUser),
+                  }
+                )
+                setUsers(users.filter((user) => user.id !== id))
+                resetForm()
+                setOpen(false)
+              }}
+            >
+              Delele
+            </Button>
+          ) : (
+            ''
+          )}
           <Button
             onClick={async () => {
               const newUser = {
