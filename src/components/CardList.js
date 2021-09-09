@@ -173,27 +173,21 @@ export const CardList = ({ users, text, setUsers }) => {
             onClick={() => {
               setOpen(false)
             }}
-            color='primary'
+            variant='outlined'
           >
             Cancel
           </Button>
 
           {isUpdate ? (
             <Button
-              color='primary'
+              color='secondary'
+              variant='contained'
               onClick={async () => {
-                const selectUser = {
-                  name,
-                  address: { street, suite, city, zipcode },
-                  email,
-                  phone,
-                }
-                const res = await fetch(
+                await fetch(
                   `https://jsonplaceholder.typicode.com/users/${id}`,
                   {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(selectUser),
                   }
                 )
                 setUsers(users.filter((user) => user.id !== id))
@@ -248,6 +242,7 @@ export const CardList = ({ users, text, setUsers }) => {
               setOpen(false)
             }}
             color='primary'
+            variant='contained'
           >
             {isUpdate ? 'Update' : 'Save'}
           </Button>
