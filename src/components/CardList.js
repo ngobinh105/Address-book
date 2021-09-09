@@ -11,6 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import backendUrl from '../backendUrl'
 export const CardList = ({ users, text, setUsers }) => {
   const [open, setOpen] = useState(false)
   const [name, setName] = useState('')
@@ -183,7 +184,7 @@ export const CardList = ({ users, text, setUsers }) => {
               color='secondary'
               variant='contained'
               onClick={async () => {
-                await fetch(`http://localhost:5000/users/${id}`, {
+                await fetch(`${backendUrl}/${id}`, {
                   method: 'DELETE',
                   headers: { 'Content-Type': 'application/json' },
                 })
@@ -207,7 +208,7 @@ export const CardList = ({ users, text, setUsers }) => {
               }
               if (isUpdate) {
                 const res = await fetch(
-                  `http://localhost:5000/users/${id}`,
+                  `${backendUrl}/users/${id}`,
 
                   {
                     method: 'PUT', // or 'PUT'
@@ -220,7 +221,7 @@ export const CardList = ({ users, text, setUsers }) => {
                 const data = await res.json()
                 setUsers(users.map((user) => (user.id !== id ? user : data)))
               } else {
-                const res = await fetch(`http://localhost:5000/users`, {
+                const res = await fetch(`${backendUrl}/users`, {
                   method: 'POST', // or 'PUT'
                   headers: {
                     'Content-Type': 'application/json',

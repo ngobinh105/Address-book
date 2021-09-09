@@ -1,12 +1,13 @@
 import CardList from './components/CardList'
 import { useState, useEffect } from 'react'
 import AppBar from './components/AppBar'
+import backendUrl from './backendUrl'
 function App() {
   const [users, setUsers] = useState([])
   const [text, setText] = useState('')
   useEffect(() => {
     const getUsers = async () => {
-      const res = await fetch('http://localhost:5000/users')
+      const res = await fetch(`${backendUrl}/users`)
       const data = await res.json()
       setUsers(data)
     }
