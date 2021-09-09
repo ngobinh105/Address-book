@@ -183,13 +183,10 @@ export const CardList = ({ users, text, setUsers }) => {
               color='secondary'
               variant='contained'
               onClick={async () => {
-                await fetch(
-                  `https://jsonplaceholder.typicode.com/users/${id}`,
-                  {
-                    method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
-                  }
-                )
+                await fetch(`http://localhost:5000/users/${id}`, {
+                  method: 'DELETE',
+                  headers: { 'Content-Type': 'application/json' },
+                })
                 setUsers(users.filter((user) => user.id !== id))
                 resetForm()
                 setOpen(false)
@@ -210,7 +207,7 @@ export const CardList = ({ users, text, setUsers }) => {
               }
               if (isUpdate) {
                 const res = await fetch(
-                  `https://jsonplaceholder.typicode.com/users/${id}`,
+                  `http://localhost:5000/users/${id}`,
 
                   {
                     method: 'PUT', // or 'PUT'
@@ -223,16 +220,13 @@ export const CardList = ({ users, text, setUsers }) => {
                 const data = await res.json()
                 setUsers(users.map((user) => (user.id !== id ? user : data)))
               } else {
-                const res = await fetch(
-                  `https://jsonplaceholder.typicode.com/users`,
-                  {
-                    method: 'POST', // or 'PUT'
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(newUser),
-                  }
-                )
+                const res = await fetch(`http://localhost:5000/users`, {
+                  method: 'POST', // or 'PUT'
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(newUser),
+                })
                 const data = await res.json()
 
                 setUsers([...users, data])

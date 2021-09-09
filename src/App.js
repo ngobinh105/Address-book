@@ -6,7 +6,7 @@ function App() {
   const [text, setText] = useState('')
   useEffect(() => {
     const getUsers = async () => {
-      const res = await fetch('https://jsonplaceholder.typicode.com/users')
+      const res = await fetch('http://localhost:5000/users')
       const data = await res.json()
       setUsers(data)
     }
